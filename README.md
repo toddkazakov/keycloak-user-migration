@@ -56,11 +56,14 @@ The `id` attribute in the above response is optional. If it's not set Keycloak w
 The POST request is for password validation. It will have to accept the following body:
 ```json
 {
+    "userId": "string"
     "password": "string"
 }
 ```
 
 ...And return HTTP status 200 if the password is correct. Any other response will be treated as invalid credentials.
+
+If you have migrated legacy user ids, you can also make use of the `userId` attribute to resolve the user whose credentials are being validated, in case their username changed between the times the user was migrated to Keycloak and when the credential verification request is made.
 
 ### Example REST client behavior
 
