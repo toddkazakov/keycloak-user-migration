@@ -8,9 +8,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserPasswordDtoTest {
 
     @Test
-    void shouldConstructWithPassword() {
+    void shouldConstructWithPasswordAndId() {
+        var id = "123456789";
         var password = "somePassword";
-        var dto = new UserPasswordDto(password);
+        var dto = new UserPasswordDto(password, id);
+        assertEquals(id, dto.getUserId());
         assertEquals(password, dto.getPassword());
     }
 
@@ -20,6 +22,14 @@ class UserPasswordDtoTest {
         var dto = new UserPasswordDto();
         dto.setPassword(password);
         assertEquals(password, dto.getPassword());
+    }
+
+    @Test
+    void shouldSetAndGetUserId() {
+        var id = "123456789";
+        var dto = new UserPasswordDto();
+        dto.setUserId(id);
+        assertEquals(id, dto.getUserId());
     }
 
     @Test

@@ -47,8 +47,8 @@ public class RestUserService implements LegacyUserService {
     }
 
     @Override
-    public boolean isPasswordValid(String username, String password) {
-        final Response response = client.validatePassword(username, new UserPasswordDto(password));
+    public boolean isPasswordValid(String userId, String username, String password) {
+        final Response response = client.validatePassword(username, new UserPasswordDto(userId, password));
         return response.getStatus() == 200;
     }
 }

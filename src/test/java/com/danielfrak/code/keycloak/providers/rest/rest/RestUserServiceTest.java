@@ -112,31 +112,33 @@ class RestUserServiceTest {
 
     @Test
     void isPasswordValidShouldReturnTrueForValidPassword() {
+        var id = "123456789";
         var username = "someUsername";
         var somePassword = "somePassword";
         var response = mock(Response.class);
 
-        when(client.validatePassword(username, new UserPasswordDto(somePassword)))
+        when(client.validatePassword(username, new UserPasswordDto(id, somePassword)))
                 .thenReturn(response);
         when(response.getStatus())
                 .thenReturn(200);
 
-        var result = restUserService.isPasswordValid(username, somePassword);
+        var result = restUserService.isPasswordValid(id, username, somePassword);
         assertTrue(result);
     }
 
     @Test
     void isPasswordValidShouldReturnFalseForInvalidPassword() {
+        var id = "123456789";
         var username = "someUsername";
         var somePassword = "somePassword";
         var response = mock(Response.class);
 
-        when(client.validatePassword(username, new UserPasswordDto(somePassword)))
+        when(client.validatePassword(username, new UserPasswordDto(id, somePassword)))
                 .thenReturn(response);
         when(response.getStatus())
                 .thenReturn(403);
 
-        var result = restUserService.isPasswordValid(username, somePassword);
+        var result = restUserService.isPasswordValid(id, username, somePassword);
         assertFalse(result);
     }
 }

@@ -94,14 +94,17 @@ class LegacyProviderTest {
         when(input.getType())
                 .thenReturn(PasswordCredentialModel.TYPE);
 
+        final String id = "123456789";
         final String username = "user";
         final String password = "password";
 
+        when(userModel.getId())
+                .thenReturn(id);
         when(userModel.getUsername())
                 .thenReturn(username);
         when(input.getChallengeResponse())
                 .thenReturn(password);
-        when(legacyUserService.isPasswordValid(username, password))
+        when(legacyUserService.isPasswordValid(id, username, password))
                 .thenReturn(false);
 
         var result = legacyProvider.isValid(realmModel, userModel, input);
@@ -115,14 +118,17 @@ class LegacyProviderTest {
         when(input.getType())
                 .thenReturn(PasswordCredentialModel.TYPE);
 
+        final String id = "123456789";
         final String username = "user";
         final String password = "password";
 
+        when(userModel.getId())
+                .thenReturn(id);
         when(userModel.getUsername())
                 .thenReturn(username);
         when(input.getChallengeResponse())
                 .thenReturn(password);
-        when(legacyUserService.isPasswordValid(username, password))
+        when(legacyUserService.isPasswordValid(id, username, password))
                 .thenReturn(true);
 
         when(session.userCredentialManager())
